@@ -26,6 +26,7 @@
 \*-----------------------------------*/
 
 @import url("../components/btn.css");
+@import url("../components/contact-celebration.css");
 
 
 
@@ -51,6 +52,17 @@
 }
 
 .contact-text { margin-block: 5px 30px; }
+
+.contact-content {
+  display: grid;
+  gap: 30px;
+}
+
+.contact-portrait {
+  width: min(100%, 480px);
+  max-width: none;
+  margin-inline: auto;
+}
 
 .contact .label { margin-block-end: 8px; }
 
@@ -131,6 +143,39 @@ textarea {
 
 
 /**
+ * Keep the portrait beside the form on tablets and narrower desktops.
+ */
+
+@media (min-width: 768px) and (max-width: 1439px) {
+
+  .contact .container {
+    position: relative;
+    padding-inline-start: 140px;
+  }
+
+  .contact-portrait {
+    position: absolute;
+    left: -153px;
+    width: 480px;
+    max-width: none;
+    margin: 0;
+    z-index: 2;
+    transform: translateY(-50%);
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  .contact-portrait { top: 290px; }
+
+}
+
+
+
+
+
+/**
  * responsive for large than 992px screen
  */
 
@@ -143,8 +188,62 @@ textarea {
   }
 
   .contact-content {
-    width: 70%;
+    width: 90%;
     margin-inline: auto;
+  }
+
+  .contact-portrait { width: min(140%, 620px); }
+
+}
+
+@media (min-width: 992px) and (max-width: 1439px) {
+
+  .contact-portrait {
+    top: 50%;
+    width: 480px;
+  }
+
+}
+
+
+
+
+
+/**
+ * Hide the decorative portrait on mobile.
+ */
+
+@media (max-width: 767px) {
+
+  .contact-portrait { display: none; }
+
+}
+
+
+
+
+
+/**
+ * Place the portrait beside the form when the viewport has room for it.
+ */
+
+@media (min-width: 1440px) {
+
+  .contact .container { position: relative; }
+
+  .contact-form {
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-portrait {
+    position: absolute;
+    top: 50%;
+    left: -298px;
+    width: 520px;
+    margin: 0;
+    z-index: 2;
+    transform: translateY(-50%);
   }
 
 }

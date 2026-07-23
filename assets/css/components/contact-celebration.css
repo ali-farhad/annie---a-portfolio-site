@@ -1,0 +1,72 @@
+.contact-portrait {
+  position: relative;
+  isolation: isolate;
+}
+
+.contact-portrait > img {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-portrait .celebration {
+  position: absolute;
+  inset: 4% 10%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.contact-portrait .celebration-shape {
+  position: absolute;
+  top: 90%;
+  left: var(--x);
+  width: var(--size);
+  aspect-ratio: 1;
+  background: var(--maximum-yellow-red);
+  filter: drop-shadow(2px 2px 0 var(--jet));
+  opacity: 0;
+  will-change: top, opacity, transform;
+  animation: contact-celebration-rise var(--duration) cubic-bezier(0.25, 0.7, 0.35, 1) var(--delay) infinite;
+}
+
+.contact-portrait .celebration-shape:nth-child(3n + 2) { background: var(--orange-red); }
+
+.contact-portrait .celebration-shape:nth-child(4n) { background: hsl(177, 39%, 62%); }
+
+.contact-portrait .celebration-shape.star {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 94%, 50% 72%, 21% 94%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.contact-portrait .celebration-shape.dot { border-radius: 50%; }
+
+.contact-portrait .celebration-shape.diamond {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.contact-portrait .celebration-shape.spark {
+  clip-path: polygon(40% 0%, 60% 0%, 60% 38%, 100% 38%, 100% 62%, 60% 62%, 60% 100%, 40% 100%, 40% 62%, 0% 62%, 0% 38%, 40% 38%);
+}
+
+@keyframes contact-celebration-rise {
+  0% {
+    top: 90%;
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) rotate(0deg) scale(0.45);
+  }
+
+  15% {
+    opacity: 1;
+    transform: translate3d(calc(var(--drift) * 0.15), 0, 0) rotate(calc(var(--spin) * 0.15)) scale(1);
+  }
+
+  72% { opacity: 0.95; }
+
+  100% {
+    top: 6%;
+    opacity: 0;
+    transform: translate3d(var(--drift), -12px, 0) rotate(var(--spin)) scale(0.7);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-portrait .celebration { display: none; }
+}

@@ -100,6 +100,10 @@
   margin-inline: auto;
 }
 
+.hero-banner img {
+  filter: drop-shadow(0 22px 18px hsla(221, 28%, 16%, 0.14));
+}
+
 
 
 
@@ -164,8 +168,6 @@
   #SKILLS
 \*-----------------------------------*/
 
-.skill { padding-block-end: 0; }
-
 .skill .container,
 .skill-list { display: grid; }
 
@@ -182,6 +184,79 @@
   color: var(--jet);
   font-size: 1.6rem;
   font-weight: var(--fw-500);
+}
+
+.skill-banner {
+  position: relative;
+  isolation: isolate;
+}
+
+.skill-banner img {
+  position: relative;
+  z-index: 1;
+}
+
+.celebration {
+  position: absolute;
+  inset: 4% 10%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.celebration-shape {
+  position: absolute;
+  top: 90%;
+  left: var(--x);
+  width: var(--size);
+  aspect-ratio: 1;
+  background: var(--maximum-yellow-red);
+  filter: drop-shadow(2px 2px 0 var(--jet));
+  opacity: 0;
+  will-change: top, opacity, transform;
+  animation: celebration-rise var(--duration) cubic-bezier(0.25, 0.7, 0.35, 1) var(--delay) infinite;
+}
+
+.celebration-shape:nth-child(3n + 2) { background: var(--orange-red); }
+
+.celebration-shape:nth-child(4n) { background: hsl(177, 39%, 62%); }
+
+.celebration-shape.star {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 94%, 50% 72%, 21% 94%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.celebration-shape.dot { border-radius: 50%; }
+
+.celebration-shape.diamond {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.celebration-shape.spark {
+  clip-path: polygon(40% 0%, 60% 0%, 60% 38%, 100% 38%, 100% 62%, 60% 62%, 60% 100%, 40% 100%, 40% 62%, 0% 62%, 0% 38%, 40% 38%);
+}
+
+@keyframes celebration-rise {
+  0% {
+    top: 90%;
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) rotate(0deg) scale(0.45);
+  }
+
+  15% {
+    opacity: 1;
+    transform: translate3d(calc(var(--drift) * 0.15), 0, 0) rotate(calc(var(--spin) * 0.15)) scale(1);
+  }
+
+  72% { opacity: 0.95; }
+
+  100% {
+    top: 6%;
+    opacity: 0;
+    transform: translate3d(var(--drift), -12px, 0) rotate(var(--spin)) scale(0.7);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .celebration { display: none; }
 }
 
 
@@ -385,7 +460,16 @@
    * SKILL
    */
 
-  .skill .container { align-items: flex-start; }
+  .skill .container {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: center;
+  }
+
+  .skill-banner {
+    width: 140%;
+    max-width: none;
+    justify-self: center;
+  }
 
 }
 

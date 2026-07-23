@@ -54,3 +54,16 @@ const activeHeader = function () {
 }
 
 window.addEventListener("scroll", activeHeader);
+
+
+
+/**
+ * CURRENT YEAR
+ */
+
+const currentYear = new Date().getFullYear();
+const currentYearElements = document.querySelectorAll("[data-current-year]");
+
+for (const yearElement of currentYearElements) {
+  yearElement.textContent = currentYear;
+}

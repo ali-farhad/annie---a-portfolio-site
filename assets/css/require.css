@@ -436,6 +436,10 @@ body.loaded {
   padding-block: 18px;
 }
 
+.footer .text-center { white-space: nowrap; }
+
+.footer [data-current-year] { display: inline; }
+
 .social-list {
   display: flex;
   justify-content: center;
@@ -445,6 +449,19 @@ body.loaded {
 
 .social-link {
   font-size: 1.8rem;
+  display: grid;
+  place-items: center;
+}
+
+.social-link svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.social-link .fiverr-mark path,
+.social-link .fiverr-mark circle:last-child {
+  fill: var(--jet);
 }
 
 .social-link:is(:hover, :focus-visible) {
